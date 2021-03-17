@@ -261,7 +261,8 @@ Introduction
 </h1>
 <p>One of the more salient barriers to performing high-quality psychological research, especially in these times of pandemic and social distancing, is reproducibility. Although the so-called “reproducibility crisis” is surely overblown and not nearly as crisis-ish as it is claimed, the fact remains that the foundation of science is in fact broad replicability of results, the better to nail down on the underlying “universal laws” beneath. Of course, in Psychology, one quickly learns that there are no such laws, discounting chaos theory; reality may be deterministic at a molecular level, but at the level of the whole thinking, acting human, behavior may be impacted by literally uncountable influences. These include development, language, culture, affect, prior learning and any of the hundreds of other factors you can conceive of acting on a person at a given place and time. As the complexity of the underlying situation comes to the fore, the concept of “laws” begins to feel even a little quaint and naive. By the same token, however, we cannot as a field allow a single study on a single population - most likely a convenience sample of Psychology undergrads at the same institution the researcher works at - to dictate theory and practice going forward. Replication and standardization must become a higher priority if we intend to truly take our work to the next level.</p>
 <p>However, I hear the responses saying, “Replication is hard!” I can’t deny that it is true. Replicating studies takes time, which costs money, and may require specialized materials or apparatus that the original researcher has created, and may be reticent to share for one reason or another. The predatory, adversarial world of scientific publishing and the fear of being “scooped”, of losing publishing privileges and the accompanying clout, the all important Nature Paper credential hanging upon one’s wall and lauded in one’s CV, does push things in undesirable directions. Open science and access is a step in the right direction, but it will be years at best before these efforts show fruit in reducing the downsides of our unduly capitalist-lite “everyone for themselves” academic culture into one that more closely represents the cooperative spirit of scientific progress.</p>
-<p>But, more to the point, what if replication could be made simpler? Questions of sampling and individual differences will likely never be solved by but a single study alone, for the real answer there is to simply add more samples and more data points to the mix. How can this be achieved, in a simpler, less costly way? By bundling all assets and methods of a study together and freely disseminating them to the world, that an identical or consciously modified version of the same exact experiment may be simply and quickly deployed on a variety of populations. All the better if it can be done online, as well; though the vagaries of the Internet Age have brought with them some negative aspects it has nonetheless significantly improved many people’s access to institutions and researchers they might otherwise not have been able to attend or participate in research from. This presents other challenges, of course, as remote procedures bring with them a host of other challenges, such as reduced control, equipment variation on the participants’ end, and just plain not fully knowing what the participants are doing at all times in the research. That said, these are not insurmountable problems, and may not make the data gathered using such techniques meaningless, either. A virtual face-to-face proctoring chat on Zoom, or at least talking head to talking head, can go a long way here, as well as employing cognizant, thoughtful design when creating the experimental materials.</p>
+<p>But, more to the point, what if replication could be made simpler? Questions of sampling and individual differences will likely never be solved by but a single study alone, for the real answer there is to simply add more samples and more data points to the mix. How can this be achieved, in a simpler, less costly way? By bundling all assets and methods of a study together and freely disseminating them to the world, that an identical or consciously modified version of the same exact experiment may be simply and quickly deployed on a variety of populations.</p>
+<p>All the better if it can be done online, as well; though the vagaries of the Internet Age have brought with them some negative aspects it has nonetheless significantly improved many people’s access to institutions and researchers they might otherwise not have been able to attend or participate in research from. This presents other challenges, of course, as remote procedures bring with them a host of other challenges, such as reduced control, equipment variation on the participants’ end, and just plain not fully knowing what the participants are doing at all times in the research. That said, these are not insurmountable problems, and may not make the data gathered using such techniques meaningless, either. A virtual face-to-face proctoring chat on Zoom, or at least talking head to talking head, can go a long way here, as well as employing cognizant, thoughtful design when creating the experimental materials.</p>
 <h3>
 <center>
 The Project
@@ -275,7 +276,23 @@ The Project
 Process
 </center>
 </h1>
-<p>Troubled, dark and stormy. Done way too late. Questionably “done” at all.</p>
+<p>In contrast with my rosy, hopeful prose above, the process of actively converting the experiment has been somewhat troubled, dark and stormy. Done way too late. Questionably “done” at all. Still, we press on.</p>
+<h3>
+Original Format
+</h3>
+<p>For historical reference, I have included the first version of the automated process utilized in this experiment. The original vintage utilized a PowerPoint presentation that used the internal timing feature to advance and display the stimuli according to a timing function I created that corresponds to the lengths of the song stimuli I assembled in Audacity software. This was a somewhat touchy process and it did get off-synch for a couple of early participants when it was revealed that I was somehow using an old version of the word lists for the third task, which threw off balance entirely in the end cases. This was found and fixed eventually, but those cases were essentially useless and dropped from the final analysis. The new, more modern version I am creating will have rigorous pre-testing to prevent issues of this sort from showing up in production runs with real participants.</p>
+<h3>
+Prototyping &amp; Code Base Issues
+</h3>
+<p>Unfortunately, the process of creating the new version has not been entirely smooth. The first major setback was I was forced to refactor the code to use a different library set. Twine utilizes a variety of pre-built javascript functions to make for easier, more natural-language coding in the creation process. Unfortunately, the one I began using is aimed more at basic use and beginners, and while it is definitely more user-friendly in a number of ways, it also lacks built-in support for text entry methods that are central to this experiment. The early prototype I created using this library is included in the second folder, EarlyPrototype for reference. I do find the larger font and styling to be somewhat more inherently appealing, and will likely be applying it via CSS to the more functional prototype at a later date.</p>
+<p>The good news is that there are other libraries available for Twine that do a better job of providing access to full JavaScript functionality and web input methods. I created a new prototype using a different library that is closer to the metal, so to speak, while still retaining a fair amount of usability. This new process required a rather laborious search/replace method to convert the various functions it uses from one format to the other, but fortunately most of the actual functions themselves also exist in both libraries, as they are essentially built-in JavaScript nicely sealed in more user-friendly wrappers. The new library has both standard text boxes and larger-scale web text area support, so grabbing the user input was comparatively a snap.</p>
+<p>Once I got the refactoring out of the way, the rest of the project fell into place relatively smoothly - or, at least, to the extent that it’s been completed thus far. Due to time constraints and a somewhat ill-timed request from my advisor to actually work on current research projects instead of digitizing old ones, I have only implemented the first round of the three that the within-subjects design calls for.</p>
+<h3>
+Audio Issues
+</h3>
+<p>Also somewhat unfortunately, the method I was hoping to use of compressing and inserting the sound files the experiment runs on has been hampered by the, ah, apparent loss of the individual components in disassembled form. I still have original files in compiled format, where they have been coded into a single file that runs the entire length of the experiment, but the initial pieces, individual songs and perhaps most importantly the background noise samples, are not available at this exact moment*. These files are not huge but at about 55mb they are slightly larger than most online base64 converters will accept, sadly. This is definitely a hindrance to the project’s main goal, which is to evaluate the effects of listening to these sounds while doing the cognitive tasks… but for testing purposes and the conceptual display of experiment upgrades, I hope that the present efforts will be sufficient.</p>
+<p>*I have them on a CD. I do not, however, have a working computer CD drive right now, as I haven’t used one in years and did not install one in my current PC. I wonder if this is how people who put data on tapes and punch cards felt, several years down the line…</p>
+<p>Although it is not integrated into the presentation in the way I would dearly have liked to, I have included one of these compiled audio files in the AudioSamples directory. The noise sample is not included in these files as it was played back via external 360 degree speakers during the original experiment. I have also included it in the audio folder. If you play both tracks at once and start the ABC.mp3 when you hear a tone in the first few seconds of background noise.mp3, that will closely approximate the way I actually set them up in the original. In the future, of course, all these sounds will be driven through the software and will not require pressing the Play button on an old iPod like the originals did.</p>
 <h1>
 <center>
 Upgrades
@@ -283,22 +300,116 @@ Upgrades
 </h1>
 <h3>
 <center>
-Efficiency
+Efficiency &amp; Fidelity
 </center>
 </h3>
-<p>This new way of doing the experiment is vastly more efficient. The effort and error potential of hand-grading the response sheets and then laboriously entering into a database has been replaced by</p>
+<p>Regardless of the issues highlighted above, this new way of doing the experiment is vastly more efficient. The effort and error potential of hand-grading the response sheets and then laboriously entering into a database has been replaced by an automated scoring method for the first two major tasks. This code is methodologically relevant to this course, as it both replaces an inefficient by-hand process and uses both custom functions and automation code to examine the participant input, concatenate it to an array, change all responses to uppercase, compare those responses to a reference list, and compile a global score. The code then combines all participant input collected by the experiment and saves it via a JavaScript export function to a .csv file, which is currently downloaded into the same directory the experiment file is run from. I have included it in a code block below.</p>
+<pre><code>Scoring Participant $participant...
+&lt;&lt;set $srArr = [$srA1,$srA2,$srA3,$srA4,$srA5,$srA6,$srA7,$srA8,$srA9,$srA10]&gt;&gt;
+&lt;&lt;set $srArrCaps to [&quot;blah&quot;]&gt;&gt;
+&lt;&lt;for _i to 0; _i &lt; 9; _i++&gt;&gt;&lt;&lt;set $srArrCaps[_i] to $srArr[_i].toUpperCase()&gt;&gt;&lt;&lt;/for&gt;&gt;
+&lt;&lt;set $erArr = [$erA1,$erA2,$erA3,$erA4,$erA5,$erA6,$erA7,$erA8,$erA9,$erA10]&gt;&gt;
+&lt;&lt;set $erArrCaps to [&quot;B&quot;]&gt;&gt;
+&lt;&lt;for _i to 0; _i &lt; 9; _i++&gt;&gt;&lt;&lt;set $erArrCaps[_i] to $erArr[_i].toUpperCase()&gt;&gt;&lt;&lt;/for&gt;&gt;
+&lt;&lt;set $erEvalArr = [$w1aReact,$w1aReact,$w2aReact,$w3aReact,$w4aReact,$w5aReact,$w6aReact,$w7aReact,$w8aReact,$w9aReact,$w10aReact]&gt;&gt;
+&lt;&lt;set _pt to playTime()&gt;&gt;
+&lt;&lt;set _ptSec to playTime(&#39;seconds&#39;)&gt;&gt;
+&lt;&lt;set _ptMin to playTime(&#39;minutes&#39;)&gt;&gt;
+&lt;&lt;set $ptX to ((_ptMin * 60)+ _ptSec)&gt;&gt;
+&lt;&lt;set $srScore to 0&gt;&gt;
+&lt;&lt;for _i to 0; _i &lt; 9; _i++&gt;&gt;&lt;&lt;print $srArrCaps[_i]+&quot;, &quot;&gt;&gt;&lt;&lt;if $srArrCaps[_i] == $SRwordListA[_i]&gt;&gt;&lt;&lt;set $srScore += 1&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/for&gt;&gt;
+Raw Serial Recall Score: &lt;&lt;print $srScore&gt;&gt;
+&lt;&lt;set $erScore to 0&gt;&gt;
+&lt;&lt;for _i to 0; _i &lt; 9; _i++&gt;&gt;&lt;&lt;print $erArrCaps[_i]+&quot;, &quot;&gt;&gt;&lt;&lt;if $erArrCaps[_i] == $ERwordListA[_i]&gt;&gt;&lt;&lt;set $erScore += 1&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/for&gt;&gt;
+Raw Episodic Recall Score: &lt;&lt;print $erScore&gt;&gt;
+/*&lt;&lt;set _tileListOutput[_i] to [&quot;MedicalTile&quot;+(_i+1), $tileListShuf[_i].title, $tileListShuf[_i].valType, $tileVArr[_i], $tileTimeArr[_i] ]&gt;&gt;&lt;&lt;set _tileListPhoneOutput[_i] to [&quot;PhoneTile&quot;+(_i+1), $tileListPhoneShuf[_i].title, $tileListPhoneShuf[_i].valType, $tilePhoneVArr[_i], $tilePhoneTimeArr[_i] ]&gt;&gt;&lt;&lt;/for&gt;&gt;*/
+&lt;&lt;set $x = [$srArr,$srScore,$erArr,$erScore,$erEvalArr,$trA,$ptX]&gt;&gt;
+&lt;&lt;set $x2 = $x.toString()&gt;&gt;
+&lt;&lt;export $x2 $participant &#39;text&#39;&gt;&gt;</code></pre>
+<p>Next on the agenda is to convert the messy and complex offline, manual scoring of the text recall portion to an automated format. This is regrettably significantly more challenging than simply comparing the values of two arrays to one another, and may require more complex computational resources. Understanding and scoring natural language text corpuses is a difficult task for usual computers, though I have heard good things about current machine learning and AI methods. Of course, whether those are an appropriate venue of response here is a valid question. Similar changes might be avoided by varying the design of the experiment to utilize a different measure of slightly longer term memory that is more readily scored and understood computationally. Of course, there is also the brute force Human Resources methods, as collaring a couple of willing RA’s and asking them to score the text sections, with accompanying inter-rater reliability assessments and tiebreaker analyses by the PI would be a relatively plausible means of performing this complex scoring activity in the absence of high-end AI interpretive methods. (Though again I’ve been hearing great things about GPT-3 and successor models… just have to get my hands on a high-end CUDA machine and, uh, also learn how to code those sorts of things. I’ve played with the output, if nothing else… If you haven’t had an opportunity to check it out, visit www.AIDungeon.com to see how this sort of thing can play out when put to the purpose of running a text-based RPG or adventure game.)</p>
 <h3>
 <center>
-Fidelity
+Sharing &amp; Reproducibility
 </center>
 </h3>
-<p>This new way of doing the experiment is vastly more efficient.</p>
-<h3>
+<p>Even in incomplete form, this new method is leaps and bounds ahead of the old-school, analogue format this experiment originally existed in. By simple virtue of uploading it to GitHub in the first place, it is now vastly more accessible and interpretable than the original study was; now, again, even in sketchy format, more than 100% more people will have viewed, downloaded and executed the code than the original called for. (This is entirely because the original number there was, ah, one. But still, the math cannot be argued with.)</p>
+<p>Once fully feature-complete and coded, online data repositories might be established on GitHub or similar sites. Although the experiment files themselves are a couple hundred mb when collated together, as the final project is intended, this is a fairly small amount by the standards of modern computers and broadband connections, and the data output files are as sleek as they come as tiny csv files. Once all is said and done, remote versions of the materials could be downloaded for use in labs, and even fully remote participants could download the files and complete the experiment wholly on their own machines. This does of course raise questions of experimental control, whether participatns who are cheating by using outside memory like taking pictures or writing things down, participants who instead get on their phones instead of paying attention, and participants whose headphones are not very good quality or whose browsers are somehow incapable of running the experimental files properly, despite their general broad-base usability… but these questions are no different than the thousands of other projects similarly hampered by COVID-19 social distancing. Concurrent Zoom chat proctoring might go a long way towards helping ensure the compliance of participants, and attention checks can be simply coded into later iterations of the software, particularly towards the end of the second and third loops, where fatigue setting in may be a substantial factor.</p>
+<H1>
 <center>
-Sharing/Reproducibility
+Data Comparisons
 </center>
-</h3>
-<p>This new way of doing the experiment is vastly more efficient.</p>
+</h1>
+<p>The final section I had planned for this project was meant to be a comparison of the old data used in my experiment with some simulations of output from the new version. Unfortunately, due to time constraints and the unfinished nature of the whole thing here, this has not fallen into place like I hoped it would.</p>
+<p>I have included the original SPSS data file that was analyzed for the final presentation of the original form of this research in the folder 4OldData. It can be loaded directly into R with a little finagling using the built-in “foreign” package.</p>
+<pre class="r"><code>library(foreign)
+olddata = read.spss(&quot;4OldData/fullset.sav&quot;, use.value.labels = T, to.data.frame = T)</code></pre>
+<pre><code>## Warning in read.spss(&quot;4OldData/fullset.sav&quot;, use.value.labels = T, to.data.frame
+## = T): 4OldData/fullset.sav: Very long string record(s) found (record type 7,
+## subtype 14), each will be imported in consecutive separate variables</code></pre>
+<pre><code>## re-encoding from CP1252</code></pre>
+<pre class="r"><code>head(olddata)</code></pre>
+<pre><code>##   CaseNumber Age Gender            Race EngFirst Order           Noise SRT.M0
+## 1       1225  22 Female          Latino      Yes   ABC Cafeteria Noise      7
+## 2       1226  18   Male          Latino       No   ACB Cafeteria Noise     10
+## 3       1227  20   Male          Latino       No   BAC Cafeteria Noise     10
+## 4       1228  21   Male          Latino       No   BCA Cafeteria Noise      9
+## 5       1229  18 Female           Asian      Yes   CAB Cafeteria Noise     10
+## 6       1230  19 Female Native American      Yes   CBA Cafeteria Noise      9
+##   SRT.M1 SRT.M2 ESRT.M0 ESRT.M1 ESRT.M2 DTRT.M0 DTRT.M1 DTRT.M2 perfects
+## 1      7      5       7       7       6     3.5     4.9     4.4        0
+## 2     10     10      10       3       7     4.6     4.1     3.8        4
+## 3     10      9      10       6       3     3.1     2.5     2.0        3
+## 4     10      5       7       6       8     3.1     2.2     2.2        1
+## 5      9      7       5       7       9     3.8     3.4     2.9        1
+## 6      8      6       7       7       5     4.8     4.1     4.2        0
+##   ceiling Q.HowDistract Q.LyrMorDistr Q.MusStdyFreq Q.LoudStdy Q.MusVsNois
+## 1       4             8             9             1          1           9
+## 2       5             7             3             5          4           9
+## 3       4             7             4             2          1           6
+## 4       4             6             7             8          8           2
+## 5       5             9             8             2          1           8
+## 6       4             8             7             3          4           5
+##   Q.SongsListed
+## 1           Yes
+## 2           Yes
+## 3           Yes
+## 4           Yes
+## 5           Yes
+## 6            No
+##                                                                                                                                                                                                                                                             notes
+## 1                                                                                                                                                                                                                                                                
+## 2                                                                                                                                                                                                                                                                
+## 3                                                                                                                                                                                                                                                                
+## 4                                                                                                                                                                                                                                                                
+## 5                                                                                                                                                                                                                                                                
+## 6                                                                                                                                                                                                                                                                
+##                                                                                                                                                                                                                                                            NOTES0
+## 1                                                                                                                                                                                                                                                                
+## 2                                                                                                                                                                                                                                                                
+## 3                                                                                                                                                                                                                                                                
+## 4                                                                                                                                                                                                                                                                
+## 5                                                                                                                                                                                                                                                                
+## 6                                                                                                                                                                                                                                                                
+##                                                                                                                                                                                                                                                            NOTES1
+## 1                                                                                                                                                                                                                                                                
+## 2                                                                                                                                                                                                                                                                
+## 3                                                                                                                                                                                                                                                                
+## 4                                                                                                                                                                                                                                                                
+## 5                                                                                                                                                                                                                                                                
+## 6                                                                                                                                                                                                                                                                
+##                                         NOTES2
+## 1                                             
+## 2                                             
+## 3                                             
+## 4                                             
+## 5                                             
+## 6</code></pre>
+<p>This gives us a decent picture of what was going on in the old data set. There are a number of demographic questions I considered pertinent to how distracting lyrical music in English might be, including a question as to whether English was the participant’s first language. (I am very glad I created robust value labels in SPSS back in the day that can now be easily transferred to R factors.) English as a first language did not have any significant predictive value of performance in this data, though I remain curious as to whether it has an effect or not.</p>
+<p>I also noted the order of the sound conditions; in order to counterbalance against fatigue effects, participants in the original (and, once completed, in the new) version of the study will have semi-randomized song stimuli: the order of the samples themselves will remain constant, but whether the first set of tasks will have A, the noise-only condition, B, the non-lyrical Karaoke versions of the songs, or C. the full Lyrical songs is random at a per-participant level and intended to be collected in full Latin Square rotations. Pure randomization would also solve this problem, but I am still somewhat interested in whether the presentation order has a notable interaction of any kind with any of the sound conditions. Thus it was retained and used as a factor in the initial MANOVA analysis. The old data did not find any effect of Order, which was nice to know.</p>
+<p>Moving on, we see that all 84 cases were performed under the “Cafeteria Noise” condition. A planned “No Noise” between-subjects comparison condition had to be scrapped in the interest of time back in the day. The final version of the new version will include this as a switch available to the experimenter.</p>
+<p>Next, we see our three data conditions. These are correct scores of each participant on the cognitive measures under the three noise conditions: M0, noise only, M1, Karaoke tracks, and M2, full Lyrical tracks. The three tasks are coded as SRT, serial-recall task for the first more classic “memorize this list in order” task, ESRT, Episodic Serial Recall Task for the second memory task that asked participants to instead think about the positive or negative value of each word and then recall them at the end, and finally the DTRT, the Delayed Text Recall Task. This last task was the only one that showed any major, significant differences across the three noise conditions, so in the end the laborious kludge of grading them proved worthwhile if nothing else.</p>
+<p>Following this are a couple columns where I listed how many categories a given participant received a perfect score on and an attempt to estimate how this ceiling effect affected things. Following that, a series of post-experiment questions I asked and ran some simple correlations on in an attempt to probe whether participants who consciously found music especially distracting actually did worse on the tasks than those who did not. They are 9-point Likert scales. SongsListed was a binary dummy code noting whether the participant listed any of tracks as being especially distracting as compared to the others. (For some reason, this file does not contain their actual responses to that question, which I believe I intended to use when creating follow-up experiments and for future reference. At least I was thinking ahead, I suppose.) Finally, a notes field which contains the “Multi” and “Other” ethnicity responses and some notes on the participants’ file. Looking back over these, I see a couple cases I probably would have dropped now, whether from misunderstanding instructions or other issues.</p>
+<p>This file was cleaned with a fairly basic checking procedure where I went back over the original files one by one and made sure they were accurately entered. I did kick out a couple cases where one person refused to write anything after the first round and a couple other oddities.</p>
 
 
 
