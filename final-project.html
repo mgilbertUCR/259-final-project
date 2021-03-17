@@ -311,7 +311,7 @@ Efficiency &amp; Fidelity
 &lt;&lt;set $erArr = [$erA1,$erA2,$erA3,$erA4,$erA5,$erA6,$erA7,$erA8,$erA9,$erA10]&gt;&gt;
 &lt;&lt;set $erArrCaps to [&quot;B&quot;]&gt;&gt;
 &lt;&lt;for _i to 0; _i &lt; 9; _i++&gt;&gt;&lt;&lt;set $erArrCaps[_i] to $erArr[_i].toUpperCase()&gt;&gt;&lt;&lt;/for&gt;&gt;
-&lt;&lt;set $erEvalArr = [$w1aReact,$w1aReact,$w2aReact,$w3aReact,$w4aReact,$w5aReact,$w6aReact,$w7aReact,$w8aReact,$w9aReact,$w10aReact]&gt;&gt;
+&lt;&lt;set $erEvalArr = [$w1aReact,$w2aReact,$w3aReact,$w4aReact,$w5aReact,$w6aReact,$w7aReact,$w8aReact,$w9aReact,$w10aReact]&gt;&gt;
 &lt;&lt;set _pt to playTime()&gt;&gt;
 &lt;&lt;set _ptSec to playTime(&#39;seconds&#39;)&gt;&gt;
 &lt;&lt;set _ptMin to playTime(&#39;minutes&#39;)&gt;&gt;
@@ -340,6 +340,9 @@ Data Comparisons
 </center>
 </h1>
 <p>The final section I had planned for this project was meant to be a comparison of the old data used in my experiment with some simulations of output from the new version. Unfortunately, due to time constraints and the unfinished nature of the whole thing here, this has not fallen into place like I hoped it would.</p>
+<h3>
+Old Data
+</h3>
 <p>I have included the original SPSS data file that was analyzed for the final presentation of the original form of this research in the folder 4OldData. It can be loaded directly into R with a little finagling using the built-in “foreign” package.</p>
 <pre class="r"><code>library(foreign)
 olddata = read.spss(&quot;4OldData/fullset.sav&quot;, use.value.labels = T, to.data.frame = T)</code></pre>
@@ -405,11 +408,61 @@ olddata = read.spss(&quot;4OldData/fullset.sav&quot;, use.value.labels = T, to.d
 ## 5                                             
 ## 6</code></pre>
 <p>This gives us a decent picture of what was going on in the old data set. There are a number of demographic questions I considered pertinent to how distracting lyrical music in English might be, including a question as to whether English was the participant’s first language. (I am very glad I created robust value labels in SPSS back in the day that can now be easily transferred to R factors.) English as a first language did not have any significant predictive value of performance in this data, though I remain curious as to whether it has an effect or not.</p>
+<pre class="r"><code>#logistic regression to see if English as First Language predicts scores on full Lyrical music condition
+mylogit &lt;- glm(EngFirst ~ SRT.M2 + ESRT.M2 + DTRT.M2, data = olddata, family = &quot;binomial&quot;)
+summary(mylogit)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = EngFirst ~ SRT.M2 + ESRT.M2 + DTRT.M2, family = &quot;binomial&quot;, 
+##     data = olddata)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.5591  -1.2487   0.8988   1.0541   1.2554  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)
+## (Intercept) -0.395735   1.152658  -0.343    0.731
+## SRT.M2      -0.004784   0.102587  -0.047    0.963
+## ESRT.M2     -0.018504   0.112922  -0.164    0.870
+## DTRT.M2      0.285658   0.240427   1.188    0.235
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 114.73  on 83  degrees of freedom
+## Residual deviance: 113.28  on 80  degrees of freedom
+## AIC: 121.28
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
 <p>I also noted the order of the sound conditions; in order to counterbalance against fatigue effects, participants in the original (and, once completed, in the new) version of the study will have semi-randomized song stimuli: the order of the samples themselves will remain constant, but whether the first set of tasks will have A, the noise-only condition, B, the non-lyrical Karaoke versions of the songs, or C. the full Lyrical songs is random at a per-participant level and intended to be collected in full Latin Square rotations. Pure randomization would also solve this problem, but I am still somewhat interested in whether the presentation order has a notable interaction of any kind with any of the sound conditions. Thus it was retained and used as a factor in the initial MANOVA analysis. The old data did not find any effect of Order, which was nice to know.</p>
+<pre class="r"><code>#MANOVA analysis including Order term as between-subjects factor</code></pre>
 <p>Moving on, we see that all 84 cases were performed under the “Cafeteria Noise” condition. A planned “No Noise” between-subjects comparison condition had to be scrapped in the interest of time back in the day. The final version of the new version will include this as a switch available to the experimenter.</p>
 <p>Next, we see our three data conditions. These are correct scores of each participant on the cognitive measures under the three noise conditions: M0, noise only, M1, Karaoke tracks, and M2, full Lyrical tracks. The three tasks are coded as SRT, serial-recall task for the first more classic “memorize this list in order” task, ESRT, Episodic Serial Recall Task for the second memory task that asked participants to instead think about the positive or negative value of each word and then recall them at the end, and finally the DTRT, the Delayed Text Recall Task. This last task was the only one that showed any major, significant differences across the three noise conditions, so in the end the laborious kludge of grading them proved worthwhile if nothing else.</p>
+<pre class="r"><code>#t-test comparisons of each music condition</code></pre>
 <p>Following this are a couple columns where I listed how many categories a given participant received a perfect score on and an attempt to estimate how this ceiling effect affected things. Following that, a series of post-experiment questions I asked and ran some simple correlations on in an attempt to probe whether participants who consciously found music especially distracting actually did worse on the tasks than those who did not. They are 9-point Likert scales. SongsListed was a binary dummy code noting whether the participant listed any of tracks as being especially distracting as compared to the others. (For some reason, this file does not contain their actual responses to that question, which I believe I intended to use when creating follow-up experiments and for future reference. At least I was thinking ahead, I suppose.) Finally, a notes field which contains the “Multi” and “Other” ethnicity responses and some notes on the participants’ file. Looking back over these, I see a couple cases I probably would have dropped now, whether from misunderstanding instructions or other issues.</p>
+<pre class="r"><code>#correlaton matrix of post-survey q&#39;s and performance in Lyrical music condition</code></pre>
 <p>This file was cleaned with a fairly basic checking procedure where I went back over the original files one by one and made sure they were accurately entered. I did kick out a couple cases where one person refused to write anything after the first round and a couple other oddities.</p>
+<h3>
+Simulated New Data
+</h3>
+<p>Here is where I would like to include a similar look at some new data, even if it wasn’t real, but unfortunately that is not likely to happen at this juncture. I have included a quick runthrough of the experiment as it exists now and the somewhat limited output it generates, which lacks real comparison vectors as only a single round exists and thus there are no differential music conditions to compare.</p>
+<pre class="r"><code>sim = read.csv(&quot;5SimulatedNewData/test50772827.csv&quot;)
+head(sim)</code></pre>
+<pre><code>##        sr1      sr2     sr3 sr4       sr5     sr6 sr7     sr8     sr9     sr10
+## 1 Basement Northern Whiskey  NA Starboard Kumquat  NA Vicious Extends Aardvark
+##   srscore     er1    er2      er3      er4 er5 er6 er7 er8      er9       er10
+## 1       4 Mercury Canada Embalmer Infantry  NA  NA  NA  NA Justices Elderberry
+##   erscore erR1 erR2 erR3 erR4 erR5 erR6 erR7 erR8 erR9 erR10
+## 1       5   -1    1   -1   -1    1    1    1   -1    1    -1
+##                                                                     trA
+## 1 Parakeets suck and that text sucks. I&#39;ve got to get something better.
+##   time.sec.
+## 1        20</code></pre>
+<p>As we can see from this very basic output, the new format will save individual responses to the memory questions and the full response to the Text Recall question, as well as generating the same summary scores that will one day form the basis of the analyses performed on the old data. I can also readily program in the demographic survey and post-experience Likert questions as well if they are desired.</p>
+<h1>
+Final Considerations
+</h1>
+<p>Although this project is not fully complete and usable, I believe this report has shown a significant improvement over the original, and I fully hope it satisfies the spirit of the assignment. This course has been very eye opening from a coding and procedural perspective, and while I may not have a perfectly suited procedure to submit to the upgrading procedure this assignment originally called for, I hope this is sufficiently demonstrative that I have absorbed at least some of the best practices in using R to perform analyses of experimental data.</p>
 
 
 

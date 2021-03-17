@@ -62,7 +62,7 @@ Scoring Participant $participant...
 <<set $erArr = [$erA1,$erA2,$erA3,$erA4,$erA5,$erA6,$erA7,$erA8,$erA9,$erA10]>>
 <<set $erArrCaps to ["B"]>>
 <<for _i to 0; _i < 9; _i++>><<set $erArrCaps[_i] to $erArr[_i].toUpperCase()>><</for>>
-<<set $erEvalArr = [$w1aReact,$w1aReact,$w2aReact,$w3aReact,$w4aReact,$w5aReact,$w6aReact,$w7aReact,$w8aReact,$w9aReact,$w10aReact]>>
+<<set $erEvalArr = [$w1aReact,$w2aReact,$w3aReact,$w4aReact,$w5aReact,$w6aReact,$w7aReact,$w8aReact,$w9aReact,$w10aReact]>>
 <<set _pt to playTime()>>
 <<set _ptSec to playTime('seconds')>>
 <<set _ptMin to playTime('minutes')>>
@@ -91,6 +91,8 @@ Once fully feature-complete and coded, online data repositories might be establi
 
 The final section I had planned for this project was meant to be a comparison of the old data used in my experiment with some simulations of output from the new version.  Unfortunately, due to time constraints and the unfinished nature of the whole thing here, this has not fallen into place like I hoped it would.
 
+<h3>Old Data</h3>
+
 I have included the original SPSS data file that was analyzed for the final presentation of the original form of this research in the folder 4OldData.  It can be loaded directly into R with a little finagling using the built-in "foreign" package.
 
 ```{r}
@@ -101,13 +103,47 @@ head(olddata)
 
 This gives us a decent picture of what was going on in the old data set.  There are a number of demographic questions I considered pertinent to how distracting lyrical music in English might be, including a question as to whether English was the participant's first language. (I am very glad I created robust value labels in SPSS back in the day that can now be easily transferred to R factors.)  English as a first language did not have any significant predictive value of performance in this data, though I remain curious as to whether it has an effect or not.
 
+```{r}
+#logistic regression to see if English as First Language predicts scores on full Lyrical music condition
+mylogit <- glm(EngFirst ~ SRT.M2 + ESRT.M2 + DTRT.M2, data = olddata, family = "binomial")
+summary(mylogit)
+```
+
 I also noted the order of the sound conditions; in order to counterbalance against fatigue effects, participants in the original (and, once completed, in the new) version of the study will have semi-randomized song stimuli: the order of the samples themselves will remain constant, but whether the first set of tasks will have A, the noise-only condition, B, the non-lyrical Karaoke versions of the songs, or C. the full Lyrical songs is random at a per-participant level and intended to be collected in full Latin Square rotations.  Pure randomization would also solve this problem, but I am still somewhat interested in whether the presentation order has a notable interaction of any kind with any of the sound conditions.  Thus it was retained and used as a factor in the initial MANOVA analysis.  The old data did not find any effect of Order, which was nice to know.
+
+```{r}
+#MANOVA analysis including Order term as between-subjects factor
+
+```
 
 Moving on, we see that all 84 cases were performed under the "Cafeteria Noise" condition. A planned "No Noise" between-subjects comparison condition had to be scrapped in the interest of time back in the day.  The final version of the new version will include this as a switch available to the experimenter.
 
 Next, we see our three data conditions.  These are correct scores of each participant on the cognitive measures under the three noise conditions: M0, noise only, M1, Karaoke tracks, and M2, full Lyrical tracks.  The three tasks are coded as SRT, serial-recall task for the first more classic "memorize this list in order" task, ESRT, Episodic Serial Recall Task for the second memory task that asked participants to instead think about the positive or negative value of each word and then recall them at the end, and finally the DTRT, the Delayed Text Recall Task.  This last task was the only one that showed any major, significant differences across the three noise conditions, so in the end the laborious kludge of grading them proved worthwhile if nothing else.
 
+```{r}
+#t-test comparisons of each music condition
+
+```
+
 Following this are a couple columns where I listed how many categories a given participant received a perfect score on and an attempt to estimate how this ceiling effect affected things.  Following that, a series of post-experiment questions I asked and ran some simple correlations on in an attempt to probe whether participants who consciously found music especially distracting actually did worse on the tasks than those who did not.  They are 9-point Likert scales.  SongsListed was a binary dummy code noting whether the participant listed any of tracks as being especially distracting as compared to the others.  (For some reason, this file does not contain their actual responses to that question, which I believe I intended to use when creating follow-up experiments and for future reference. At least I was thinking ahead, I suppose.)  Finally, a notes field which contains the "Multi" and "Other" ethnicity responses and some notes on the participants' file.  Looking back over these, I see a couple cases I probably would have dropped now, whether from misunderstanding instructions or other issues.
+
+```{r}
+#correlaton matrix of post-survey q's and performance in Lyrical music condition
+
+```
 
 This file was cleaned with a fairly basic checking procedure where I went back over the original files one by one and made sure they were accurately entered.  I did kick out a couple cases where one person refused to write anything after the first round and a couple other oddities.
 
+<h3>Simulated New Data</h3>
+
+Here is where I would like to include a similar look at some new data, even if it wasn't real, but unfortunately that is not likely to happen at this juncture.  I have included a quick runthrough of the experiment as it exists now and the somewhat limited output it generates, which lacks real comparison vectors as only a single round exists and thus there are no differential music conditions to compare.
+
+```{r}
+sim = read.csv("5SimulatedNewData/test50772827.csv")
+head(sim)
+```
+As we can see from this very basic output, the new format will save individual responses to the memory questions and the full response to the Text Recall question, as well as generating the same summary scores that will one day form the basis of the analyses performed on the old data.  I can also readily program in the demographic survey and post-experience Likert questions as well if they are desired.
+
+<h1>Final Considerations</h1>
+
+Although this project is not fully complete and usable, I believe this report has shown a significant improvement over the original, and I fully hope it satisfies the spirit of the assignment.  This course has been very eye opening from a coding and procedural perspective, and while I may not have a perfectly suited procedure to submit to the upgrading procedure this assignment originally called for, I hope this is sufficiently demonstrative that I have absorbed at least some of the best practices in using R to perform analyses of experimental data.
