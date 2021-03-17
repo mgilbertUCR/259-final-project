@@ -25,12 +25,22 @@ In response to both these conundrums and the replication-related issues noted ab
 
 <h1><center>Process</center></h1>
 
-Troubled, dark and stormy. Done way too late.  Questionably "done" at all.
+In contrast with my rosy, hopeful prose above, the process of actively converting the experiment has been somewhat troubled, dark and stormy.  Done way too late.  Questionably "done" at all.  Still, we press on.
+
+The first major setback was I was forced to refactor the code to use a different library set.  Twine utilizes a variety of pre-built javascript functions to make for easier, more natural-language coding in the creation process.  Unfortunately, the one I began using is aimed more at basic use and beginners, and while it is definitely more user-friendly in a number of ways, it also lacks built-in support for text entry methods that are central to this experiment.  The early prototype I created using this library is included in the second folder, EarlyPrototype for reference.  I do find the larger font and styling to be somewhat more inherently appealing, and will likely be applying it via CSS to the more functional prototype at a later date.
+
+The good news is that there are other libraries available for Twine that do a better job of providing access to full JavaScript functionality and web input methods.  I created a new prototype using a different library that is closer to the metal, so to speak, while still retaining a fair amount of usability.  This new process required a rather laborious search/replace method to convert the various functions it uses from one format to the other, but fortunately most of the actual functions themselves also exist, as they are essentially built-in JavaScript nicely sealed in more user-friendly wrappers.  The new library has both standard text boxes and larger-scale web text area support, so grabbing the user input was comparatively a snap.
+
+Once I got the refactoring out of the way, the rest of the project fell into place relatively smoothly - or, at least, to the extent that it's been completed thus far.  Due to time constraints and a somewhat ill-timed request from my advisor to actually work on current research projects instead of digitizing old ones, I have only completed the first round of the three that the within-subjects design calls for.  
+
+Also somewhat unfortunately, the method I was hoping to use of compressing and inserting the sound files the experiment runs on has been hampered by the, ah, apparent loss of the individual components in disassembled form.  I still have original files in compiled format, where they have been coded into a single file that runs the entire length of the experiment, but the initial pieces, individual songs and perhaps most importantly the background noise samples, are not available at this exact moment*.  These files are not huge but at about 55mb they are slightly larger than most online base64 converters will accept, sadly.  This is definitely a hindrance to the project's main goal, which is to evaluate the effects of listening to these sounds while doing the cognitive tasks... but for testing purposes and the conceptual display of experiment upgrades, I hope that the present efforts will be sufficient.
+
+*I have them on a CD. I do not, however, have a working computer CD drive right now, as I haven't used one in years and did not install one in my current PC. I wonder if this is how people who put data on tapes and punch cards felt, several years down the line...
 
 <h1><center>Upgrades</center></h1>
 
 <h3><center>Efficiency</center></h3>
-This new way of doing the experiment is vastly more efficient.  The effort and error potential of hand-grading the response sheets and then laboriously entering into a database has been replaced by 
+Regardless of the issues highlighted above, this new way of doing the experiment is vastly more efficient.  The effort and error potential of hand-grading the response sheets and then laboriously entering into a database has been replaced by 
 
 <h3><center>Fidelity</center></h3>
 This new way of doing the experiment is vastly more efficient.
